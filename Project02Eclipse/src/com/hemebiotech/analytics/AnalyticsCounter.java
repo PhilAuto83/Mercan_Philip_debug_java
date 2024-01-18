@@ -48,7 +48,7 @@ public class AnalyticsCounter {
 	 * @param symptomWithCounts which is a map of symptoms and their occurrence as count
 	 * @return the same map but sorted by key
 	 */
-	TreeMap<String, Integer> sortSymptoms(Map<String, Integer> symptomWithCounts){
+	Map<String, Integer> sortSymptoms(Map<String, Integer> symptomWithCounts){
 		return new TreeMap<>(symptomWithCounts);
 	}
 
@@ -61,7 +61,7 @@ public class AnalyticsCounter {
 		AnalyticsCounter analyticsCounter = new AnalyticsCounter(reader, writer);
 		List<String> symptomLists = analyticsCounter.getSymptoms();
 		Map<String, Integer> symptomWithCounts = analyticsCounter.countSymptoms(symptomLists);
-		TreeMap<String, Integer> sortedSymptomsWithCounts = analyticsCounter.sortSymptoms(symptomWithCounts);
+		Map<String, Integer> sortedSymptomsWithCounts = analyticsCounter.sortSymptoms(symptomWithCounts);
 
 		writer.writeSymptoms(sortedSymptomsWithCounts, "result.out");
 		

@@ -10,5 +10,5 @@ import java.util.TreeMap;
 
 public interface ISymptomWriter {
 
-    public void writeSymptoms(TreeMap<String, Integer> symptoms, String filePath);
+    public void writeSymptoms(Map<String, Integer> symptoms, String filePath);
 }

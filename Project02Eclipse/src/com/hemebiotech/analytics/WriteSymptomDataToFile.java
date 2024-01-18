@@ -19,7 +19,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
      * the output file will be sorted by symptom name
      */
     @Override
-    public void writeSymptoms(TreeMap<String, Integer> symptoms, String filePath) {
+    public void writeSymptoms(Map<String, Integer> symptoms, String filePath) {
         try(FileWriter writer = new FileWriter(filePath)){
             symptoms.forEach((symptom, count)->{
                 try {
