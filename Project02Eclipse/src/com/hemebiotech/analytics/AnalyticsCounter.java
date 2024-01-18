@@ -1,14 +1,14 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * This class contains reader and writer which are reading symptoms from files and converting it into a map with symptoms and their occurrences.
+ * It is then sorted and will be used in main method to output the result in a file.
+ */
 public class AnalyticsCounter {
 	private static int headacheCount = 0;
 	private static int rashCount = 0;
@@ -20,10 +20,19 @@ public class AnalyticsCounter {
 		this.writer = writer;
 	}
 
+	/**
+	 * This method read the symptoms defined in a file and returns it as a list of String
+	 * @return a list of symptoms from file defined as parameter in ReadSymptomDataFromFile reader instance
+	 */
 	List<String> getSymptoms(){
 		return reader.getSymptoms();
 	}
 
+	/**
+	 *
+	 * @param symptoms which is a list of symptoms as String
+	 * @return a map with symptoms as key and count the occurrence of a symptom to put it as value of type Integer
+	 */
 	public Map<String, Integer>
 	countSymptoms(List<String> symptoms) {
 		Map <String, Integer> symptomAndCount = new HashMap<>();
@@ -44,6 +53,11 @@ public class AnalyticsCounter {
 		return symptomAndCount;
 	}
 
+	/**
+	 *
+	 * @param symptomWithCounts which is a map of symptoms and their occurrence as count
+	 * @return the same map but sorted by key
+	 */
 	TreeMap<String, Integer> sortSymptoms(Map<String, Integer> symptomWithCounts){
 		return new TreeMap<>(symptomWithCounts);
 	}
