@@ -28,7 +28,7 @@ public class AnalyticsCounter {
 				pupilCount++;
 			}
 
-			line = reader.readLine();	
+			line = reader.readLine();
 		}
 		
 		// next generate output
