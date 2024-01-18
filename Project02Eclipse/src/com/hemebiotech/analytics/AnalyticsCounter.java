@@ -10,9 +10,6 @@ import java.util.TreeMap;
  * It is then sorted and will be used in main method to output the result in a file.
  */
 public class AnalyticsCounter {
-	private static int headacheCount = 0;
-	private static int rashCount = 0;
-	private static int pupilCount = 0;
 	ISymptomReader reader;
 	ISymptomWriter writer;
 	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer){
@@ -31,26 +28,19 @@ public class AnalyticsCounter {
 	/**
 	 *
 	 * @param symptoms which is a list of symptoms as String
-	 * @return a map with symptoms as key and count the occurrence of a symptom to put it as value of type Integer
+	 * @return a map with symptoms as key and count which is the occurrence of a symptom in the file
 	 */
-	public Map<String, Integer>
-	countSymptoms(List<String> symptoms) {
+	public Map<String, Integer>	countSymptoms(List<String> symptoms) {
 		Map <String, Integer> symptomAndCount = new HashMap<>();
-		symptoms.forEach(symptom ->{
-			if (symptom.equals("headache")) {
-				headacheCount++;
-			}
-			else if (symptom.equals("rash")) {
-				rashCount++;
-			}
-			else if (symptom.contains("dialated pupils")) {
-				pupilCount++;
-			}
-			});
-		symptomAndCount.put("headache", headacheCount);
-		symptomAndCount.put("rash", rashCount);
-		symptomAndCount.put("dialated pupils", pupilCount);
-		return symptomAndCount;
+        for (String symptom : symptoms) {
+            if (symptomAndCount.containsKey(symptom)) {
+                Integer newValue = symptomAndCount.get(symptom) + 1;
+                symptomAndCount.put(symptom, newValue);
+            } else {
+                symptomAndCount.put(symptom, 1);
+            }
+        }
+        return symptomAndCount;
 	}
 
 	/**
