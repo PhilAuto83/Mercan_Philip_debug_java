@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The interface write data in a file from a Map with key as symptom and value as count
@@ -9,5 +10,5 @@ import java.util.Map;
 
 public interface ISymptomWriter {
 
-    public void writeSymptoms(Map<String, Integer> symptoms);
+    public void writeSymptoms(TreeMap<String, Integer> symptoms, String filePath);
 }

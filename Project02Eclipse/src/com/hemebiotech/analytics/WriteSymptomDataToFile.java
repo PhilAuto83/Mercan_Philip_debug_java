@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,18 +19,17 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
      * the output file will be sorted by symptom name
      */
     @Override
-    public void writeSymptoms(Map<String, Integer> symptoms) {
-        TreeMap<String, Integer> sortedMap = new TreeMap<>(symptoms);
-        try(FileWriter writer = new FileWriter ("result.out")){
-            sortedMap.forEach((symptom, count)->{
+    public void writeSymptoms(TreeMap<String, Integer> symptoms, String filePath) {
+        try(FileWriter writer = new FileWriter(filePath)){
+            symptoms.forEach((symptom, count)->{
                 try {
-                    writer.write(symptom+":"+count);
-                } catch (IOException e) {
+                    writer.write(symptom+":"+count+"\n");
+                    } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
         }catch (Exception ex){
-            System.out.println(ex.printStackTrace());
+            System.out.println(ex.getMessage());
 
         }
 
