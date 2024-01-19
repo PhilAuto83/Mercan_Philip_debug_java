@@ -9,23 +9,25 @@ import java.util.TreeMap;
 
 /**
  * This class is an implementation of ISymptomWriter interface
- * The implementation of the method is writing symptom and its count in an output file hardcoded in the method
+ * The implementation of the method is writing symptom and its count in an output file defined as parameter in the method
+ * <b>writeSymptoms()</b>.
  */
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
     /**
      *
-     * @param symptoms this is a Map with symptom(String type) as key and count(Integer type) as value
-     * the output file will be sorted by symptom name
+     * @param symptomsWithOccurrence This is a Map with symptom as key and the occurrence of the symptom as value.     *
+     * The output file will not be sorted.
      */
     @Override
-    public void writeSymptoms(Map<String, Integer> symptoms, String filePath) {
-        try(FileWriter writer = new FileWriter(filePath)){
-            symptoms.forEach((symptom, count)->{
+    public void writeSymptoms(Map<String, Integer> symptomsWithOccurrence, String filePath) {
+        ;
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            symptomsWithOccurrence.forEach((symptom, count)->{
                 try {
                     writer.write(symptom+":"+count+"\n");
                     } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e.getMessage());
                 }
             });
         }catch (Exception ex){
