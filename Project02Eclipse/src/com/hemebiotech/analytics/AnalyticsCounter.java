@@ -35,9 +35,9 @@ public class AnalyticsCounter {
 	 * @param symptomsList which is a list of symptoms as String
 	 * @return symptomsWithOccurrence - This a map with symptoms as key and count which is the occurrence of a symptom in the file.
 	 */
-	public Map<String, Integer>	countSymptoms(List<String> symptomsList) {
+	public Map<String, Integer>	countSymptoms(List<String> symptomsList)  {
 		Map <String, Integer> symptomsWithOccurrence = new HashMap<>();
-        for (String symptom : symptomsList) {
+		for (String symptom : symptomsList) {
             if (symptomsWithOccurrence.containsKey(symptom)) {
                 Integer newValue = symptomsWithOccurrence.get(symptom) + 1;
 				symptomsWithOccurrence.put(symptom, newValue);
@@ -49,7 +49,7 @@ public class AnalyticsCounter {
 	}
 
 	/**
-	 * This method is taking a Map {@link #countSymptoms(List symptomsWithOccurrence)} and sorting it by key name.
+	 * This method is taking a Map returned from {@link #countSymptoms(List symptomsWithOccurrence)} and sorting it by key name.
 	 * @param symptomsWithOccurrence which is a map of symptoms and their occurrence as count.
 	 * @return The same map but sorted by key name.
 	 */
@@ -58,7 +58,7 @@ public class AnalyticsCounter {
 	}
 
 	
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args)  {
 
 		ISymptomReader reader = new ReadSymptomDataFromFile("Project02Eclipse\\symptoms.txt");
 		ISymptomWriter writer = new WriteSymptomDataToFile();
@@ -69,7 +69,6 @@ public class AnalyticsCounter {
 		Map<String, Integer> sortedSymptomsWithCounts = analyticsCounter.sortSymptoms(symptomWithCounts);
 
 		writer.writeSymptoms(sortedSymptomsWithCounts, "result.out");
-		
 
 	}
 }
