@@ -26,12 +26,12 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
             symptomsWithOccurrence.forEach((symptom, count)->{
                 try {
                     writer.write(symptom+":"+count+"\n");
-                    } catch (IOException e) {
-                    System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
+        }catch (IOException ex){
+            ex.printStackTrace();
 
         }
 
