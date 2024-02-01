@@ -16,12 +16,13 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
     /**
      *
-     * @param symptomsWithOccurrence This is a Map with symptom as key and the occurrence of the symptom as value.     *
+     * @param symptomsWithOccurrence This is a Map with symptom as key and the occurrence of the symptom as value.     
+     *
      * The output file will not be sorted.
      */
     @Override
     public void writeSymptoms(Map<String, Integer> symptomsWithOccurrence, String filePath) {
-        ;
+        
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
             symptomsWithOccurrence.forEach((symptom, count)->{
                 try {
