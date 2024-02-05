@@ -57,6 +57,16 @@ public class AnalyticsCounter {
 		return new TreeMap<>(symptomsWithOccurrence);
 	}
 
+	/**
+	 * This method is using {@link WriteSymptomDataToFile#writeSymptoms(Map, String)} method to write symptoms and their occurrence to output file
+	 *
+	 * @param sortedSymptomsWithOccurrence which the sortedMap with symptom as key and its occurrence as value
+	 * @param filePath to define the name of the output file
+	 */
+	public void writeSymptoms(Map<String, Integer> sortedSymptomsWithOccurrence,String filePath){
+		writer.writeSymptoms(sortedSymptomsWithOccurrence,filePath);
+	}
+
 	
 	public static void main(String[] args)  {
 
@@ -68,7 +78,7 @@ public class AnalyticsCounter {
 		Map<String, Integer> symptomWithCounts = analyticsCounter.countSymptoms(symptomLists);
 		Map<String, Integer> sortedSymptomsWithCounts = analyticsCounter.sortSymptoms(symptomWithCounts);
 
-		writer.writeSymptoms(sortedSymptomsWithCounts, "result.out");
+		analyticsCounter.writeSymptoms(sortedSymptomsWithCounts, "result.out");
 
 	}
 }
