@@ -1,9 +1,12 @@
 package com.hemebiotech.analytics;
 
+import javax.sound.midi.Soundbank;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,7 +24,9 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
      */
     @Override
     public void writeSymptoms(Map<String, Integer> symptomsWithOccurrence, String filePath) {
-        ;
+        System.out.println("Starting to create output file...");
+        Instant startProcess = Instant.now();
+        Instant endProcess;
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
             symptomsWithOccurrence.forEach((symptom, count)->{
                 try {
@@ -32,8 +37,10 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
             });
         }catch (IOException ex){
             ex.printStackTrace();
-
         }
-
+        endProcess = Instant.now();
+        long generationFileTime = Duration.between(startProcess,endProcess).toMillis();
+        System.out.printf("File generation took : %d ms.%n", generationFileTime);
+        System.out.printf("You can find results in the following file : %s.",filePath);
     }
 }
